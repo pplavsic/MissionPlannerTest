@@ -32,20 +32,23 @@
 
 </div>
 <script type='text/javascript'>
+    var increment = 1;
+    var myOptions = { zoom: 13, center: new google.maps.LatLng(44.786568, 20.44892159999995), mapTypeId: google.maps.MapTypeId.SATELLITE };
+    map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+
     function init_map() {
-        var myOptions = { zoom: 13, center: new google.maps.LatLng(44.786568, 20.44892159999995), mapTypeId: google.maps.MapTypeId.SATELLITE };
-        map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
-        marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(44.786568, 20.44892159999995) });
+
         google.maps.event.addListener(map, 'click', function (event) {
 
             var lat = event.latLng.lat();
             var lng = event.latLng.lng();
+            marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(lat, long) });
             newLocation = new google.maps.LatLng(lat, lng);
             marker.setPosition(newLocation);
             $("#lat").val(lat);
             $("#long").val(lng);
+            infowindow = new google.maps.InfoWindow({ content: '<strong>'+(increment++)+'</strong><br>Belgrade, Serbia<br>' });
+            google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); }); infowindow.open(map, marker);
         });
-        //infowindow = new google.maps.InfoWindow({ content: '<strong>Belgrade</strong><br>Belgrade, Serbia<br>' });
-        //google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); }); infowindow.open(map, marker);
     } google.maps.event.addDomListener(window, 'load', init_map);
 </script>
