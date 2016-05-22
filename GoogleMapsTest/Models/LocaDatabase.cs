@@ -15,7 +15,7 @@ namespace GoogleMapsTest.Models
         // If you wish to target a different database and/or database provider, modify the 'LocaDatabase' 
         // connection string in the application configuration file.
         public LocaDatabase()
-            : base("name=LocaDatabase")
+            : base("name=PGEntities")
         {
             Database.SetInitializer<LocaDatabase>(new DataDbInitializer());
         }
