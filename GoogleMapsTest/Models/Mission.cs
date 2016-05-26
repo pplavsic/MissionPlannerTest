@@ -92,7 +92,7 @@ namespace GoogleMapsTest.Models
     public enum ActionOnFinish
     {
         [Description("No action")]
-        no_action,
+        No_action,
         [Description("Return to home")]
         Return_to_home,
         [Description("Auto landing")]
@@ -105,40 +105,40 @@ namespace GoogleMapsTest.Models
     public enum MissionExecNum
     {
         [Description("Once")]
-        once,
+        Once,
         [Description("Twice")]
-        twice
+        Twice
     }
     public enum JawMode
     {
         [Description("Auto mode(point to next waypoint)")]
-        auto_mode,
+        Auto_mode,
         [Description("Lock as an initial value")]
-        lock_as_an_initial_value,
+        Lock_as_an_initial_value,
         [Description("Controlled by RC")]
-        controlled_by_RC,
+        Controlled_by_RC,
         [Description("Use waypoint's yaw(tgt_yaw)")]
-        use_waypoints
+        Use_waypoints
     }
     public enum TraceMode
     {
         [Description("Point to point, after reaching the target waypoint hover, complete waypoints action (if any), then fly to the next waypoint")]
-        point_to_point,
+        Point_to_point,
         [Description("Coordinated turn mode, smooth transition between waypoints, no waypoints task")]
-        coordinated
+        Coordinated
     }
     public enum ActionOnRCLost
     {
         [Description("Exit waypoint and failsafe")]
-        exit_waypoint_and_failsafe,
+        Exit_waypoint_and_failsafe,
         [Description("Continue the waypoint")]
-        continue_the_waypoint
+        Continue_the_waypoint
     }
     public enum GimbalPitchMode
     {
         [Description("Free mode, no control on gimbal")]
-        free,
+        Free,
         [Description("Auto mode, Smooth transition between waypoints")]
-        smooth
+        Smooth
     }
 }

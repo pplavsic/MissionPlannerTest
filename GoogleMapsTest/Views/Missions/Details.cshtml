@@ -89,3 +89,40 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.MissionPK }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<div style='overflow:hidden;height:440px;width:700px;'>
+    <div id='gmap_canvas' style='height:440px;width:700px;'></div>
+    <div>
+        <small><a href="http://embedgooglemaps.com">									embed google maps							</a></small>
+    </div>
+    <div><small><a href="http://www.proxysitereviews.com/instantproxies">instantproxies</a></small></div>
+    <style>
+        #gmap_canvas img {
+            max-width: none !important;
+            background: none !important;
+        }
+    </style>
+</div>
+
+
+<script type='text/javascript'>
+    var increment = 1;
+    var myOptions = { zoom: 13, center: new google.maps.LatLng(44.786568, 20.44892159999995), mapTypeId: google.maps.MapTypeId.SATELLITE };
+    map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
+
+    function init_map() {
+        var model = @Html.Raw(Json.Encode(ViewBag.FlightPoints));
+        for(i = 0; i<model.length; i++){
+            var lat = model[i].Latitude;
+            var lng = model[i].Lognitude;
+            var heig = model[i].Height;
+            var act = model[i].Action;
+            marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(lat, lng) });
+            newLocation = new google.maps.LatLng(lat, lng);
+            marker.setPosition(newLocation);
+            infowindow = new google.maps.InfoWindow({ content: '<strong>Height:'+heig+'</strong><br>'+act+'<br>' });
+            google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); }); 
+            infowindow.open(map, marker);
+        }
+    } google.maps.event.addDomListener(window, 'load', init_map);
+</script>
