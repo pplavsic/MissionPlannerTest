@@ -115,6 +115,13 @@ namespace GoogleMapsTest.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult FastPoints()
+        {
+            ViewBag.MissionFK = new SelectList(db.Missions, "MissionPK", "Name");
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

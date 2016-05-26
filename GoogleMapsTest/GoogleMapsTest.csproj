@@ -241,6 +241,7 @@
     <Content Include="Views\FlightPoints\Details.cshtml" />
     <Content Include="Views\FlightPoints\Edit.cshtml" />
     <Content Include="Views\FlightPoints\Index.cshtml" />
+    <Content Include="Views\Missions\FastPoints.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
