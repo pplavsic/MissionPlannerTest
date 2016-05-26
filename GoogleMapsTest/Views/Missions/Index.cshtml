@@ -15,6 +15,30 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.velocity_range)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idle_velocity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.action_on_finish)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mission_exec_times)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.yaw_mode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trace_mode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.action_on_rc_lost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gimbal_pitch_mode)
+        </th>
         <th></th>
     </tr>
 
@@ -22,6 +46,30 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.velocity_range)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idle_velocity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.action_on_finish)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mission_exec_times)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.yaw_mode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.trace_mode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.action_on_rc_lost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gimbal_pitch_mode)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MissionPK }) |

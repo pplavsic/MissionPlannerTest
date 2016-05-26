@@ -46,7 +46,7 @@ namespace GoogleMapsTest.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MissionPK,Name")] Mission mission)
+        public ActionResult Create([Bind(Include = "MissionPK,Name,velocity_range,idle_velocity,action_on_finish,mission_exec_times,yaw_mode,trace_mode,action_on_rc_lost,gimbal_pitch_mode")] Mission mission)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace GoogleMapsTest.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MissionPK,Name")] Mission mission)
+        public ActionResult Edit([Bind(Include = "MissionPK,Name,velocity_range,idle_velocity,action_on_finish,mission_exec_times,yaw_mode,trace_mode,action_on_rc_lost,gimbal_pitch_mode")] Mission mission)
         {
             if (ModelState.IsValid)
             {
@@ -113,13 +113,6 @@ namespace GoogleMapsTest.Controllers
             db.Missions.Remove(mission);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-
-        public ActionResult FastPoints()
-        {
-            ViewBag.MissionFK = new SelectList(db.Missions, "MissionPK", "Name");
-            return View();
         }
 
         protected override void Dispose(bool disposing)
