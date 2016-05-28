@@ -7,131 +7,200 @@
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div>
+    <div class="form-horizontal">
+        <h4>FlightPoint</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-horizontal">
-            <h4>FlightPoint</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.MissionFK, "Mission", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("MissionFK", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.MissionFK, "", new { @class = "text-danger" })
+        <div class="form-group">
+
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MissionFK, "MissionFK", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("MissionFK", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MissionFK, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Altitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Altitude, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Altitude, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Damping_distance, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Damping_distance, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Damping_distance, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Target_yaw, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Target_yaw, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Target_yaw, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Target_gimbal_pitch, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Target_gimbal_pitch, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Target_gimbal_pitch, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Turn_mode, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EnumDropDownListFor(model => model.Turn_mode, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Turn_mode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Has_action, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EnumDropDownListFor(model => model.Has_action, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Has_action, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Action_time_limit, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Action_time_limit, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Action_time_limit, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ACTION_action_repeat, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ACTION_action_repeat, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ACTION_action_repeat, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model._ACTION_COMMAND_LIST, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model._ACTION_COMMAND_LIST, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model._ACTION_COMMAND_LIST, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model._ACTION_COMMAND_PARAMS, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model._ACTION_COMMAND_PARAMS, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model._ACTION_COMMAND_PARAMS, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PIAction, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EnumDropDownListFor(model => model.PIAction, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PIAction, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Height, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Action, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EnumDropDownListFor(model => model.Action, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Action, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="button" value="Last Point" onclick="getLastPoint();" class="btn btn-default" />
+            <div class="col-md-6">
+                <div style='overflow:hidden;height:440px;width:700px;'>
+                    <div id='gmap_canvas' style='height:440px;width:700px;'></div>
+                    <div>
+                        <small><a href="http://embedgooglemaps.com">									embed google maps							</a></small>
+                    </div>
+                    <div><small><a href="http://www.proxysitereviews.com/instantproxies">instantproxies</a></small></div>
+                    <style>
+                        #gmap_canvas img {
+                            max-width: none !important;
+                            background: none !important;
+                        }
+                    </style>
                 </div>
             </div>
         </div>
-
-        <div style='overflow:hidden;height:440px;width:700px;'>
-            <div id='gmap_canvas' style='height:440px;width:700px;'></div>
-            <div>
-                <small><a href="http://embedgooglemaps.com">									embed google maps							</a></small>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
-            <div><small><a href="http://www.proxysitereviews.com/instantproxies">instantproxies</a></small></div>
-            <style>
-                #gmap_canvas img {
-                    max-width: none !important;
-                    background: none !important;
-                }
-            </style>
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Last Point" onclick="getLastPoint();" class="btn btn-default" />
+            </div>
         </div>
-
     </div>
     <script type='text/javascript'>
         var myOptions = { zoom: 13, center: new google.maps.LatLng(44.786568, 20.44892159999995), mapTypeId: google.maps.MapTypeId.SATELLITE };
         map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
         marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(44.786568, 20.44892159999995) });
-    function init_map() {
-        google.maps.event.addListener(map, 'click', function (event) {
-            var lat = event.latLng.lat();
-            var lng = event.latLng.lng();
-            newLocation = new google.maps.LatLng(lat, lng);
-            marker.setPosition(newLocation);
-            $("#Latitude").val(lat);
-            $("#Longitude").val(lng);
-        });
-        infowindow = new google.maps.InfoWindow({ content: '<strong>Belgrade</strong><br>Belgrade, Serbia<br>' });
-        google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); }); infowindow.open(map, marker);
-    } google.maps.event.addDomListener(window, 'load', init_map);
-    function getLastPoint() {
-        $.ajax({
-            url: "/FlightPoints/GetLastMissionPoint",
-            data: { MissionPK: $("#MissionFK").val() },
-            type: "POST",
-            async: false,
-            success: function (data) {
-                if (data == null)
-                {
-                    alert('No points for this mission.');
+        function init_map() {
+            google.maps.event.addListener(map, 'click', function (event) {
+                var lat = event.latLng.lat();
+                var lng = event.latLng.lng();
+                newLocation = new google.maps.LatLng(lat, lng);
+                marker.setPosition(newLocation);
+                $("#Latitude").val(lat);
+                $("#Longitude").val(lng);
+            });
+            infowindow = new google.maps.InfoWindow({ content: '<strong>Belgrade</strong><br>Belgrade, Serbia<br>' });
+            google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); }); infowindow.open(map, marker);
+        } google.maps.event.addDomListener(window, 'load', init_map);
+        function getLastPoint() {
+            $.ajax({
+                url: "/FlightPoints/GetLastMissionPoint",
+                data: { MissionPK: $("#MissionFK").val() },
+                type: "POST",
+                async: false,
+                success: function (data) {
+                    if (data == null) {
+                        alert('No points for this mission.');
+                    }
+                    else {
+                        $("#Latitude").val(data.Latitude);
+                        $("#Longitude").val(data.Longitude);
+                        $("#Action").val(data.Action);
+                        $("#Altitude").val(data.Altitude);
+                        newLocation = new google.maps.LatLng(data.Latitude, data.Longitude);
+                        marker.setPosition(newLocation);
+                    }
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Cannot get last mission point.');
                 }
-                else {
-                    $("#Latitude").val(data.Latitude);
-                    $("#Longitude").val(data.Longitude);
-                    $("#Action").val(data.Action);
-                    $("#Height").val(data.Height);
-                    newLocation = new google.maps.LatLng(data.Latitude, data.Longitude);
-                    marker.setPosition(newLocation);
-                }
-                
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert('Cannot get last mission point.');
-            }
-        });
-    };
+            });
+        };
     </script>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

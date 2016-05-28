@@ -32,7 +32,7 @@ namespace GoogleMapsTest.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FlightPoints = db.FlightPoints.Where(f => f.MissionFK == mission.MissionPK).Select(s => new { Latitude = s.Latitude, Lognitude = s.Longitude, Height = s.Height, Action = s.Action.ToString() }).ToList();
+            ViewBag.FlightPoints = db.FlightPoints.Where(f => f.MissionFK == mission.MissionPK).Select(s => new { Latitude = s.Latitude, Lognitude = s.Longitude, Height = s.Altitude, Action = s.PIAction.ToString() }).ToList();
             return View(mission);
         }
 

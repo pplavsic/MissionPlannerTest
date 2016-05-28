@@ -27,7 +27,7 @@ namespace GoogleMapsTest.Models
         [Required]
         public MissionExecNum mission_exec_times { get; set; }
         [Required]
-        public JawMode yaw_mode { get; set; }
+        public YawMode yaw_mode { get; set; }
         [Required]
         public TraceMode trace_mode { get; set; }
         [Required]
@@ -109,7 +109,7 @@ namespace GoogleMapsTest.Models
         [Description("Twice")]
         Twice
     }
-    public enum JawMode
+    public enum YawMode
     {
         [Description("Auto mode(point to next waypoint)")]
         Auto_mode,

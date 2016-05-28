@@ -231,16 +231,16 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\FlightPoints\Create.cshtml" />
-    <Content Include="Views\FlightPoints\Delete.cshtml" />
-    <Content Include="Views\FlightPoints\Details.cshtml" />
-    <Content Include="Views\FlightPoints\Edit.cshtml" />
-    <Content Include="Views\FlightPoints\Index.cshtml" />
     <Content Include="Views\Missions\Create.cshtml" />
     <Content Include="Views\Missions\Delete.cshtml" />
     <Content Include="Views\Missions\Details.cshtml" />
     <Content Include="Views\Missions\Edit.cshtml" />
     <Content Include="Views\Missions\Index.cshtml" />
+    <Content Include="Views\FlightPoints\Create.cshtml" />
+    <Content Include="Views\FlightPoints\Delete.cshtml" />
+    <Content Include="Views\FlightPoints\Details.cshtml" />
+    <Content Include="Views\FlightPoints\Edit.cshtml" />
+    <Content Include="Views\FlightPoints\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

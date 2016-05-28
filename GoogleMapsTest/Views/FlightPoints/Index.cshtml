@@ -22,10 +22,37 @@
             @Html.DisplayNameFor(model => model.Longitude)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Height)
+            @Html.DisplayNameFor(model => model.Altitude)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Action)
+            @Html.DisplayNameFor(model => model.Damping_distance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Target_yaw)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Target_gimbal_pitch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Turn_mode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Has_action)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Action_time_limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACTION_action_repeat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._ACTION_COMMAND_LIST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model._ACTION_COMMAND_PARAMS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PIAction)
         </th>
         <th></th>
     </tr>
@@ -42,10 +69,37 @@
             @Html.DisplayFor(modelItem => item.Longitude)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Height)
+            @Html.DisplayFor(modelItem => item.Altitude)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Action)
+            @Html.DisplayFor(modelItem => item.Damping_distance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Target_yaw)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Target_gimbal_pitch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Turn_mode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Has_action)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Action_time_limit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACTION_action_repeat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._ACTION_COMMAND_LIST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item._ACTION_COMMAND_PARAMS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PIAction)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.FlightPointPK }) |

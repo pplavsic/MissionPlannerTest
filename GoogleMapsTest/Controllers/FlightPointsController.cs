@@ -48,7 +48,7 @@ namespace GoogleMapsTest.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FlightPointPK,MissionFK,Latitude,Longitude,Height,Action")] FlightPoint flightPoint)
+        public ActionResult Create([Bind(Include = "FlightPointPK,MissionFK,Latitude,Longitude,Altitude,Damping_distance,Target_yaw,Target_gimbal_pitch,Turn_mode,Has_action,Action_time_limit,ACTION_action_repeat,_ACTION_COMMAND_LIST,_ACTION_COMMAND_PARAMS,PIAction")] FlightPoint flightPoint)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace GoogleMapsTest.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FlightPointPK,MissionFK,Latitude,Longitude,Height,Action")] FlightPoint flightPoint)
+        public ActionResult Edit([Bind(Include = "FlightPointPK,MissionFK,Latitude,Longitude,Altitude,Damping_distance,Target_yaw,Target_gimbal_pitch,Turn_mode,Has_action,Action_time_limit,ACTION_action_repeat,_ACTION_COMMAND_LIST,_ACTION_COMMAND_PARAMS,PIAction")] FlightPoint flightPoint)
         {
             if (ModelState.IsValid)
             {
@@ -120,16 +120,14 @@ namespace GoogleMapsTest.Controllers
             return RedirectToAction("Index");
         }
 
-
         public ActionResult GetLastMissionPoint(long MissionPK)
         {
             var point = db.FlightPoints.Where(f => f.MissionFK == MissionPK).OrderByDescending(o => o.FlightPointPK).FirstOrDefault();
             if (point != null)
-            { return Json(new { Latitude = point.Latitude, Longitude = point.Longitude, Height = point.Height, Action = (int)point.Action }, JsonRequestBehavior.AllowGet); }
+            { return Json(new { Latitude = point.Latitude, Longitude = point.Longitude, Altitude = point.Altitude, Action = (int)point.PIAction }, JsonRequestBehavior.AllowGet); }
             else { return null; }
 
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
