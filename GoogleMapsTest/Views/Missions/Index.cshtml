@@ -16,6 +16,9 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MissionStatus)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.velocity_range)
         </th>
         <th>
@@ -46,6 +49,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MissionStatus)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.velocity_range)

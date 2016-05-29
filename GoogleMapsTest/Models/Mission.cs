@@ -19,6 +19,8 @@ namespace GoogleMapsTest.Models
         [MaxLength(250)]
         public string Name { get; set; }
         [Required]
+        public MissionStatus MissionStatus { get; set; }
+        [Required]
         public float velocity_range { get; set; }
         [Required]
         public float idle_velocity { get; set; }
@@ -88,6 +90,35 @@ namespace GoogleMapsTest.Models
 }waypoint_mission_info_comm_t;
     */
     }
+    /*
+    0 - //
+    1 - UploadMission - Graficka
+    2 - UploadedMissionSuccess - PI
+    3 - UploadedMissionFailed - PI
+    4 - StartMisson Graficka
+    5 - CancelMission Graficka
+    6 - MissionSuccess PI
+
+    */
+
+    public enum MissionStatus
+    {
+        [Description("NotInUse")]
+        NotInUse,
+        [Description("UploadMission")]
+        UploadMission,
+        [Description("UploadedMissionSuccess")]
+        UploadedMissionSuccess,
+        [Description("UploadedMissionFailed")]
+        UploadedMissionFailed,
+        [Description("StartMisson")]
+        StartMisson,
+        [Description("CancelMission")]
+        CancelMission,
+        [Description("MissionSuccess")]
+        MissionSuccess
+    }
+
 
     public enum ActionOnFinish
     {
