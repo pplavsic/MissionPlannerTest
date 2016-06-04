@@ -40,7 +40,21 @@ namespace GoogleMapsTest.Controllers
         public ActionResult Create()
         {
             ViewBag.MissionFK = new SelectList(db.Missions, "MissionPK", "Name");
-            return View();
+            var Model = new FlightPoint()
+            {
+                Altitude = 30,
+                Target_yaw = 0,
+                Damping_distance = 0,
+                Target_gimbal_pitch = 0,
+                Turn_mode = TurnMode.Clockwise,
+                Has_action = HasAction.No_Action,
+                Action_time_limit = 5,
+                ACTION_action_repeat = 1,
+                _ACTION_COMMAND_LIST = "1",
+                _ACTION_COMMAND_PARAMS = "1"
+                 
+            };
+            return View(Model);
         }
 
         // POST: FlightPoints/Create
