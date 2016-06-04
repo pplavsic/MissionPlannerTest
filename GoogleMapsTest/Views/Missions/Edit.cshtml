@@ -96,7 +96,9 @@
                 @Html.ValidationMessageFor(model => model.gimbal_pitch_mode, "", new { @class = "text-danger" })
             </div>
         </div>*@
-
+        @Html.LabelFor(model => model.mission_exec_times)
+        @Html.LabelFor(model => model.trace_mode)
+        @Html.LabelFor(model => model.gimbal_pitch_mode)
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

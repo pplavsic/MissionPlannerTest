@@ -95,6 +95,9 @@
             </div>
         </div>*@
 
+        @Html.HiddenFor(model => model.mission_exec_times)
+        @Html.HiddenFor(model => model.trace_mode)
+        @Html.HiddenFor(model => model.gimbal_pitch_mode)
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

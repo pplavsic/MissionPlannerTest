@@ -132,6 +132,14 @@
                     </div>
                 </div>
             </div>
+            @Html.HiddenFor(model => model.Damping_distance)
+            @Html.HiddenFor(model => model.Target_gimbal_pitch)
+            @Html.HiddenFor(model => model.Turn_mode)
+            @Html.HiddenFor(model => model.Has_action)
+            @Html.HiddenFor(model => model.Action_time_limit)
+            @Html.HiddenFor(model => model.ACTION_action_repeat)
+            @Html.HiddenFor(model => model._ACTION_COMMAND_LIST)
+            @Html.HiddenFor(model => model._ACTION_COMMAND_PARAMS)
             <div class="col-md-6">
                 <div style='overflow:hidden;height:440px;width:700px;'>
                     <div id='gmap_canvas' style='height:440px;width:700px;'></div>

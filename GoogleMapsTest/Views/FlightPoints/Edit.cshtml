@@ -128,7 +128,14 @@
                 @Html.ValidationMessageFor(model => model.PIAction, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        @Html.HiddenFor(model => model.Damping_distance)
+        @Html.HiddenFor(model => model.Target_gimbal_pitch)
+        @Html.HiddenFor(model => model.Turn_mode)
+        @Html.HiddenFor(model => model.Has_action)
+        @Html.HiddenFor(model => model.Action_time_limit)
+        @Html.HiddenFor(model => model.ACTION_action_repeat)
+        @Html.HiddenFor(model => model._ACTION_COMMAND_LIST)
+        @Html.HiddenFor(model => model._ACTION_COMMAND_PARAMS)
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
