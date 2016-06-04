@@ -135,6 +135,8 @@ namespace GoogleMapsTest.Models
     }
     public enum MissionExecNum
     {
+        [Description("N/A")]
+        NA,
         [Description("Once")]
         Once,
         [Description("Twice")]

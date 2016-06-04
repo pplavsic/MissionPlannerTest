@@ -39,7 +39,18 @@ namespace GoogleMapsTest.Controllers
         // GET: Missions/Create
         public ActionResult Create()
         {
-            return View();
+            var Model = new Mission()
+            {
+                idle_velocity = 10,
+                velocity_range = 15,
+                action_on_finish = ActionOnFinish.Return_to_home,
+                mission_exec_times = MissionExecNum.Once,
+                yaw_mode = YawMode.Use_waypoints,
+                trace_mode = Models.TraceMode.Point_to_point,
+                action_on_rc_lost = ActionOnRCLost.Exit_waypoint_and_failsafe,
+                gimbal_pitch_mode = GimbalPitchMode.Free
+            };
+            return View(Model);
         }
 
         // POST: Missions/Create
