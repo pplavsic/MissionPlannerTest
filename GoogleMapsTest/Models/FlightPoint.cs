@@ -93,7 +93,7 @@ namespace GoogleMapsTest.Models
 
 */
 
-    public enum PIAction {[Description("Take Picture")]TakePicture, [Description("Do Nothing")]NoAction }
+    public enum PIAction {[Description("Do Nothing")]NoAction, [Description("Take Picture")]TakePicture }
     public enum TurnMode {[Description("Clockwise")]Clockwise, [Description("Counter-clockwise")]Counter_clockwise }
     public enum HasAction {[Description("No action")]No_Action, [Description("Has Action")]Has_Action }
 }
