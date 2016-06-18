@@ -8,6 +8,7 @@ namespace GoogleMapsTest.Models
     {
         public virtual DbSet<FlightPoint> FlightPoints { get; set; }
         public virtual DbSet<Mission> Missions { get; set; }
+        public virtual DbSet<PolygonPoint> PolygonPoints { get; set; }
         // Your context has been configured to use a 'LocaDatabase' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
         // 'GoogleMapsTest.Models.LocaDatabase' database on your LocalDb instance. 
@@ -18,6 +19,8 @@ namespace GoogleMapsTest.Models
             : base("name=PGEntities")
         {
             Database.SetInitializer<LocaDatabase>(new DataDbInitializer());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LocaDatabase, GoogleMapsTest.Migrations.Configuration>("PGEntities"));
+
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 

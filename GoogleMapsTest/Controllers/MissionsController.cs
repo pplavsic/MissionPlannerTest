@@ -33,6 +33,7 @@ namespace GoogleMapsTest.Controllers
                 return HttpNotFound();
             }
             ViewBag.FlightPoints = db.FlightPoints.Where(f => f.MissionFK == mission.MissionPK).Select(s => new { Latitude = s.Latitude, Lognitude = s.Longitude, Height = s.Altitude, Action = s.PIAction.ToString() }).ToList();
+            ViewBag.PolygonPoints = db.PolygonPoints.Where(f => f.MissionFK == mission.MissionPK).Select(s => new { Latitude = s.Latitude, Lognitude = s.Longitude }).ToList();
             return View(mission);
         }
 
@@ -125,6 +126,37 @@ namespace GoogleMapsTest.Controllers
             db.Missions.Remove(mission);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult PolygonMission()
+        {
+            ViewBag.MissionFK = new SelectList(db.Missions, "MissionPK", "Name");
+            return View(db.Missions.ToList());
+        }
+        public ActionResult CreateMissionFromPoly(double[] Lat, double[] Lng, long MissionFK)
+        {
+            try
+            {
+                if (db.PolygonPoints.Where(f => f.MissionFK == MissionFK).FirstOrDefault() != null)
+                {
+                    return Json(new { Msg = "Polygon points already exists." }, JsonRequestBehavior.AllowGet);
+                }
+                for (int i = 0; i < Lat.Length; i++)
+                {
+                    db.PolygonPoints.Add(new PolygonPoint() { Latitude = Lat[i], Longitude = Lng[i], MissionFK = MissionFK });
+                }
+                db.SaveChanges();
+
+                //TODO: Implement FlightPoint creation!!
+
+                return Json(new { Msg = "Success" }, JsonRequestBehavior.AllowGet);
+            
+            }
+            catch(Exception g)
+            {
+                return Json(new { Msg = g.Message }, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         protected override void Dispose(bool disposing)
