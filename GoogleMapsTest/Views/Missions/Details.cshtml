@@ -129,7 +129,8 @@
             marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(lat, lng) });
             newLocation = new google.maps.LatLng(lat, lng);
             marker.setPosition(newLocation);
-            infowindow = new google.maps.InfoWindow({ content: '<strong>ID:'+index+++'</strong><br>Height:'+heig+'<br>'+act+'<br>' });
+            //infowindow = new google.maps.InfoWindow({ content: '<strong>ID:'+index+++'</strong><br>Height:'+heig+'<br>'+act+'<br>' });
+            infowindow = new google.maps.InfoWindow({ content: '<strong>ID:'+index++});
             google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); });
             infowindow.open(map, marker);
         }

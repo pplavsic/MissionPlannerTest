@@ -12,6 +12,7 @@
     <div class="col-md-10">
         @Html.DropDownList("MissionFK", null, htmlAttributes: new { @class = "form-control" })
     </div>
+    <div > <label>Altitude: </label><input id="Altitude" /> </div>    
 </div>
 <br />
 &nbsp;
@@ -72,7 +73,7 @@
         if (isClosed) {
             $.ajax({
                 url: "/Missions/CreateMissionFromPoly",
-                data: { Lat: lat, Lng: lng, MissionFK: $("#MissionFK").val() },
+                data: { Lat: lat, Lng: lng, MissionFK: $("#MissionFK").val(), Alt: $("#Altitude").val() },
                 type: "POST",
                 async: false,
                 success: function (data) {

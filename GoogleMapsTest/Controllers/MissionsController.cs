@@ -13,6 +13,7 @@ namespace GoogleMapsTest.Controllers
     public class MissionsController : Controller
     {
         private LocaDatabase db = new LocaDatabase();
+        private MissionPlanner mp = new MissionPlanner();
 
         // GET: Missions
         public ActionResult Index()
@@ -133,7 +134,7 @@ namespace GoogleMapsTest.Controllers
             ViewBag.MissionFK = new SelectList(db.Missions, "MissionPK", "Name");
             return View(db.Missions.ToList());
         }
-        public ActionResult CreateMissionFromPoly(double[] Lat, double[] Lng, long MissionFK)
+        public ActionResult CreateMissionFromPoly(double[] Lat, double[] Lng, long MissionFK, float Alt)
         {
             try
             {
@@ -146,8 +147,15 @@ namespace GoogleMapsTest.Controllers
                     db.PolygonPoints.Add(new PolygonPoint() { Latitude = Lat[i], Longitude = Lng[i], MissionFK = MissionFK });
                 }
                 db.SaveChanges();
+                
+                FlightPoint[] fps;
+                fps = mp.PlanMission(Lat, Lng, Alt, MissionFK);
 
-                //TODO: Implement FlightPoint creation!!
+                //fps = mp.reverseMission(fps);
+                //fps = mp.mirrorMission(fps);
+
+                db.FlightPoints.AddRange(fps);
+                db.SaveChanges();                
 
                 return Json(new { Msg = "Success" }, JsonRequestBehavior.AllowGet);
             
