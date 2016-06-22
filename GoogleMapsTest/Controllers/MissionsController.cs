@@ -157,7 +157,7 @@ namespace GoogleMapsTest.Controllers
                 db.FlightPoints.AddRange(fps);
                 db.SaveChanges();                
 
-                return Json(new { Msg = "Success" }, JsonRequestBehavior.AllowGet);
+                return Json(new { Msg = "Success", FlightPoints = fps }, JsonRequestBehavior.AllowGet);
             
             }
             catch(Exception g)
@@ -167,6 +167,61 @@ namespace GoogleMapsTest.Controllers
 
         }
 
+        public ActionResult ReverseMission(long MissionFK)
+        {
+            try
+            {
+                if (db.PolygonPoints.Where(f => f.MissionFK == MissionFK).FirstOrDefault() == null)
+                {
+                    return Json(new { Msg = "Polygon points not exists." }, JsonRequestBehavior.AllowGet);
+                }
+                var old = db.FlightPoints.Where(f => f.MissionFK == MissionFK).ToArray();
+                db.FlightPoints.RemoveRange(old);
+                db.SaveChanges();
+                FlightPoint[] fps = mp.reverseMission(old);
+                foreach (var i in fps)
+                {
+                    i.FlightPointPK = 0;
+                }
+                db.FlightPoints.AddRange(fps);
+                db.SaveChanges();
+                return Json(new { Msg = "Success", FlightPoints = fps.Select(s => new FlightPoint { Latitude = s.Latitude, Longitude = s.Longitude, FlightPointPK = s.FlightPointPK, _ACTION_COMMAND_LIST = s._ACTION_COMMAND_LIST, _ACTION_COMMAND_PARAMS = s._ACTION_COMMAND_PARAMS }).ToArray() }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception g)
+            {
+                return Json(new { Msg = g.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        public ActionResult MirrorMission(long MissionFK)
+        {
+            try
+            {
+                if (db.PolygonPoints.Where(f => f.MissionFK == MissionFK).FirstOrDefault() == null)
+                {
+                    return Json(new { Msg = "Polygon points not exists." }, JsonRequestBehavior.AllowGet);
+                }
+                var old = db.FlightPoints.Where(f => f.MissionFK == MissionFK).ToArray();
+                db.FlightPoints.RemoveRange(old);
+                db.SaveChanges();
+                FlightPoint[] fps = mp.mirrorMission(old);
+                foreach (var i in fps)
+                {
+                    i.FlightPointPK = 0;
+                }
+                db.FlightPoints.AddRange(fps);
+                db.SaveChanges();
+                return Json(new { Msg = "Success", FlightPoints = fps.Select(s => new FlightPoint { Latitude = s.Latitude, Longitude = s.Longitude, FlightPointPK = s.FlightPointPK, _ACTION_COMMAND_LIST = s._ACTION_COMMAND_LIST, _ACTION_COMMAND_PARAMS = s._ACTION_COMMAND_PARAMS }).ToArray() }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception g)
+            {
+                return Json(new { Msg = g.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

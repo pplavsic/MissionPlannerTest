@@ -12,7 +12,13 @@
     <div class="col-md-10">
         @Html.DropDownList("MissionFK", null, htmlAttributes: new { @class = "form-control" })
     </div>
-    <div > <label>Altitude: </label><input id="Altitude" /> </div>    
+</div>
+&nbsp;
+<div class="form-group">
+    @Html.Label("Altitude:", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBox("Altitude", null, htmlAttributes: new { @class = "form-control" })
+    </div>
 </div>
 <br />
 &nbsp;
@@ -31,14 +37,23 @@
 </div>
 <br />
 &nbsp;
-<div>
-    <input type="button" value="Create Mission" onclick="CreateMissionFromPoly();" class="btn btn-default" />
+<div class="form-group" style='width:700px;'>
+    <div class="col-md-4">
+        <input type="button" value="Create Mission" onclick="CreateMissionFromPoly();" class="btn btn-default" />
+    </div>
+    <div class="col-md-4">
+        <input type="button" id="reverseBtn" value="Reverse" onclick="ReverseMission();" class="btn btn-default" style="display:none" />
+    </div>
+    <div class="col-md-4">
+        <input type="button" id="mirrorBtn" value="Mirror" onclick="MirrorMission();" class="btn btn-default" style="display:none" />
+    </div>
 </div>
 <script type='text/javascript'>
     var poly;
     var isClosed = false;
+    var FlightMarkers = [];
+    var map = new google.maps.Map(document.getElementById('gmap_canvas'), { zoom: 13, center: new google.maps.LatLng(44.786568, 20.44892159999995), mapTypeId: google.maps.MapTypeId.SATELLITE });
     $(document).ready(function () {
-        var map = new google.maps.Map(document.getElementById('gmap_canvas'), { zoom: 13, center: new google.maps.LatLng(44.786568, 20.44892159999995), mapTypeId: google.maps.MapTypeId.SATELLITE });
         poly = new google.maps.Polyline({ map: map, path: [], strokeColor: "#FF0000", strokeOpacity: 1.0, strokeWeight: 2 });
         google.maps.event.addListener(map, 'click', function (clickEvent) {
             if (isClosed)
@@ -68,7 +83,7 @@
         for (var i = 0; i < poly.getPath().length ; i++) {
             var xy = poly.getPath().getAt(i);
             lat.push(xy.lat());
-            lng.push(xy.lng());            
+            lng.push(xy.lng());
         }
         if (isClosed) {
             $.ajax({
@@ -78,6 +93,23 @@
                 async: false,
                 success: function (data) {
                     alert(data.Msg);
+                    if (data.Msg == 'Success') {
+                        FlightMarkers = [];
+                        var firstPK = data.FlightPoints[0].FlightPointPK;
+                        for (i = 0; i < data.FlightPoints.length; i++) {
+                            var lat = data.FlightPoints[i].Latitude;
+                            var lng = data.FlightPoints[i].Longitude;
+                            marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(lat, lng) });
+                            FlightMarkers.push(marker);
+                            newLocation = new google.maps.LatLng(lat, lng);
+                            marker.setPosition(newLocation);
+                            infowindow = new google.maps.InfoWindow({ content: '<strong>ID:' + (data.FlightPoints[i].FlightPointPK - firstPK + 1) });
+                            google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); });
+                            infowindow.open(map, marker);
+                            $("#reverseBtn").show();
+                            $("#mirrorBtn").show();
+                        }
+                    }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert('Cannot create mission.');
@@ -88,6 +120,92 @@
             alert('Polygon is not closed.')
         }
 
-        
+
+    };
+    function ReverseMission() {
+      
+        if (isClosed) {
+            $.ajax({
+                url: "/Missions/ReverseMission",
+                data: { MissionFK: $("#MissionFK").val() },
+                type: "POST",
+                async: false,
+                success: function (data) {
+                    if (data.Msg == 'Success') {
+                        //hide all markers
+                        for (var i = 0; i < FlightMarkers.length; i++) {
+                            FlightMarkers[i].setMap(null);
+                        }
+                        FlightMarkers = [];
+                        var firstPK = data.FlightPoints[0].FlightPointPK;
+                        for (i = 0; i < data.FlightPoints.length; i++) {
+                            var lat = data.FlightPoints[i].Latitude;
+                            var lng = data.FlightPoints[i].Longitude;
+                            marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(lat, lng) });
+                            infowindow = new google.maps.InfoWindow({ content: '<strong>ID:' + (data.FlightPoints[i].FlightPointPK - firstPK + 1) });
+                            google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); });
+                            infowindow.open(map, marker);
+                            FlightMarkers.push(marker);
+                            newLocation = new google.maps.LatLng(lat, lng);
+                            marker.setPosition(newLocation);
+                        }
+                    }
+                    else
+                    {
+                        alert(data.Msg);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Cannot revert mission.');
+                }
+            });
+        }
+        else {
+            alert('Polygon is not closed.')
+        }
+
+
+    };
+    function MirrorMission() {
+        if (isClosed) {
+            $.ajax({
+                url: "/Missions/MirrorMission",
+                data: { MissionFK: $("#MissionFK").val() },
+                type: "POST",
+                async: false,
+                success: function (data) {
+                    if (data.Msg == 'Success') {
+                        //hide all markers
+                        for (var i = 0; i < FlightMarkers.length; i++) {
+                            FlightMarkers[i].setMap(null);
+                        }
+                        FlightMarkers = [];
+                        var firstPK = data.FlightPoints[0].FlightPointPK;
+                        for (i = 0; i < data.FlightPoints.length; i++) {
+                            var lat = data.FlightPoints[i].Latitude;
+                            var lng = data.FlightPoints[i].Longitude;
+                            marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(lat, lng) });
+                            infowindow = new google.maps.InfoWindow({ content: '<strong>ID:' + (data.FlightPoints[i].FlightPointPK - firstPK + 1) });
+                            google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); });
+                            infowindow.open(map, marker);
+                            FlightMarkers.push(marker);
+                            newLocation = new google.maps.LatLng(lat, lng);
+                            marker.setPosition(newLocation);
+                        }
+                    }
+                    else {
+                        alert(data.Msg);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Cannot mirror mission.');
+                }
+            });
+        }
+        else {
+            alert('Polygon is not closed.')
+        }
+
+
     };
 </script>
